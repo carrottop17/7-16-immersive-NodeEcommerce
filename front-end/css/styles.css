@@ -1,0 +1,61 @@
+/* line 1, ../compass/sass/styles.scss */
+body {
+  background-color: black;
+}
+
+/* line 5, ../compass/sass/styles.scss */
+.navbar-brand {
+  height: auto;
+}
+
+/* line 8, ../compass/sass/styles.scss */
+.navbar {
+  background-color: black;
+  border: none;
+}
+
+/* line 13, ../compass/sass/styles.scss */
+.dropdown {
+  margin-right: 40px;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+/* line 19, ../compass/sass/styles.scss */
+.row {
+  text-align: center;
+}
+
+/* line 23, ../compass/sass/styles.scss */
+.regular img {
+  margin: 10px;
+}
+
+/* line 27, ../compass/sass/styles.scss */
+.item {
+  display: inline-block;
+}
+
+/* line 30, ../compass/sass/styles.scss */
+.cart {
+  display: block;
+}
+
+/* line 33, ../compass/sass/styles.scss */
+.main {
+  background-color: white;
+  margin: auto;
+  width: auto;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 85px;
+  padding-bottom: 10px;
+}
+
+/* line 43, ../compass/sass/styles.scss */
+.footer {
+  color: white;
+  height: 50px;
+  text-align: center;
+  padding: 10px;
+}

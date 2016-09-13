@@ -1,56 +1,48 @@
-.title{
-	margin-top: 50px;
-}
-
-.testTweets{
-	background-color: rgba(248, 248, 248, 0.6);
-	color: rgb(13, 22, 89);
-	padding: 1px 10px;
-	border: 3px solid rgba(208, 1, 8, 0.5);
-	margin: 20px;
-	border-radius: 20px;
-}
 body{
-	background-image: url("../images/americanflag.jpg");
-	background-size: 100%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	color: #bfbfbf;
+	background-color: black;
 }
 
-.tweetBoxes{
-	margin-top: 50px;
+.navbar-brand{
+	height: auto;
+}
+.navbar{
+	background-color: black;
+	border: none;
 }
 
-#hillary{
-	color: rgb(208, 1, 8);
+.dropdown{
+	margin-right: 40px;
+	font-size: 24px;
+	margin-top: 20px;
 }
 
-#trump{
-	color: rgb(13, 22, 89);
-}
-
-#tweetColor{
-	color: rgb(97, 170, 219);
-}
-
-img{
-	width: 100%;
-}
-
-.names{
+.row{
 	text-align: center;
-	color: rgb(208, 1, 8);
-	background-color: rgba(248, 248, 248, 0.6);
-	padding: 1px 10px;
-	border: 3px solid rgba(208, 1, 8, 0.5);
-	margin: 20px;
-	border-radius: 10px;
 }
 
-.btn {
-  margin-top: 8px;
+.regular img{
+	margin: 10px;
 }
-.active{
-	font-weight: bold;
+
+.item{
+	display: inline-block;
+}
+.cart{
+	display: block;
+}
+.main{
+	background-color: white;
+	margin: auto;
+	width: auto;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 85px;
+	padding-bottom: 10px;
+}
+
+.footer{
+	color: white;
+	height: 50px;
+	text-align: center;
+	padding: 10px;
 }
