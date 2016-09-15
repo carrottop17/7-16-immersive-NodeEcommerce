@@ -6,40 +6,43 @@
 		<div class="col-sm-12">
 			<form ng-submit="register()" id="registration-form">
 				<div class="form-group">
-					<label class="col-sm-4">
-						Username
-					</label>
-					<div class="col-sm-4">
+					<div class="col-sm-6 formEnter">
+						<label>
+							Username
+						</label>
 						<input type="text" ng-model="username" placeholder="Enter your username" minlength="4" maxlength="50" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-4">
+					<div class="col-sm-6 formEnter">
+					<label>
 						Password
 					</label>
-					<div class="col-sm-4">
+					
 						<input type="password" ng-model="password" placeholder="Enter your password" minlength="4" maxlength="50" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-4">
+					<div class="col-sm-6 formEnter">
+					<label>
 						Password Confirm
 					</label>
-					<div class="col-sm-4">
+					
 						<input type="password" ng-model="password2" placeholder="Please confirm your password" minlength="4" maxlength="50" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-4">
+					<div class="col-sm-6 formEnter">
+					<label>
 						Email
 					</label>
-					<div class="col-sm-4">
+					
 						<input type="email" ng-model="email" placeholder="Enter your email" minlength="4" maxlength="50" class="form-control">
 					</div>
 				</div>
 
-				<div class="button-holder">
-					<button type="submit" class="btn btn-success">Success</button>
+				<div class="button-holder col-sm-6">
+					<button type="submit" class="btn btn-success">Register</button>
 				</div>
 			</form>
 		</div>

@@ -72,3 +72,29 @@ body {
 .comic {
   margin: auto;
 }
+
+/* line 60, ../compass/sass/styles.scss */
+.wrong-pass {
+  color: red;
+}
+
+/* line 64, ../compass/sass/styles.scss */
+.button-holder {
+  margin-top: 25px;
+}
+
+/* line 68, ../compass/sass/styles.scss */
+.formEnter {
+  margin-top: 30px;
+}
+
+/* line 72, ../compass/sass/styles.scss */
+#address-form {
+  width: 40%;
+  margin: auto;
+}
+
+/* line 77, ../compass/sass/styles.scss */
+.title {
+  margin-bottom: 20px;
+}
