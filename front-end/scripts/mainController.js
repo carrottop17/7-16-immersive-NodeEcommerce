@@ -62,7 +62,9 @@ ecommerceApp.controller('mainController', function($scope, $http, $location, $co
 		});
 	};
 
-	$scope.subscriptions = function(){};
+	$scope.subscriptions = function(){
+		$cookies.put('title', $scope.blackScience);
+	};
 });
 
 
