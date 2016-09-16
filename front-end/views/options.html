@@ -1,80 +1,81 @@
-<div class="container main">
+<div class="container main" ng-controller="optionsController">
 		<h1>Subscriptions</h1>
 		<form ng-submit="subscriptions()" id="subscription-form">
 			<div class="row regular">
 				<div class="item">
 					<img src="images/blackscience.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="blackScience">Add to cart</button>
+					<button class="btn btn-default cart" name="blackScience" ng-click="addToCart('Black Science'); added=true">Add to cart</button>
+					<div class="added" ng-show="Added">Added</div>
 				</div>
 				<div class="item">
 					<img src="images/cassanova.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="cassanova">Add to cart</button>
+					<button class="btn btn-default cart" name="cassanova" ng-click="addToCart('Cassanona')">Add to cart</button>
 				</div>
 				<div class="item">
 					<img src="images/chew.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="chew">Add to cart</button>
+					<button class="btn btn-default cart" name="chew" ng-click="addToCart('Chew')">Add to cart</button>
 				</div>
 				<div class="item">
 					<img src="images/descender.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="descender">Add to cart</button>
+					<button class="btn btn-default cart" name="descender" ng-click="addToCart('Descender')">Add to cart</button>
 				</div>
 			</div>
 			<div class="row regular">
 				<div class="item">
 					<img src="images/eastofwest.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="eastOfWest">Add to cart</button>
+					<button class="btn btn-default cart" name="eastofwest" ng-click="addToCart('East of West')">Add to cart</button>
 				</div>
 				<div class="item">
 					<img src="images/fairyland.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="fairyland">Add to cart</button>
+					<button class="btn btn-default cart" name="fairyland" ng-click="addToCart('Fairyland')">Add to cart</button>
 				</div>
 				<div class="item">
 					<img src="images/fuse.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="fuse">Add to cart</button>
+					<button class="btn btn-default cart" name="fuse" ng-click="addToCart('Fuse')">Add to cart</button>
 				</div>
 				<div class="item">
 					<img src="images/invincible.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="invincible">Add to cart</button>
+					<button class="btn btn-default cart" name="invincible" ng-click="addToCart('Invincible')">Add to cart</button>
 				</div>
 			</div>
 			<div class="row regular">
 				<div class="item">
 					<img src="images/low.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="low">Add to cart</button>
+					<button class="btn btn-default cart" name="low" ng-click="addToCart('Low')">Add to cart</button>
 				</div>
 				<div class="item">
 					<img src="images/monstress.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="monstress">Add to cart</button>
+					<button class="btn btn-default cart" name="monstress" ng-click="addToCart('Monstress')">Add to cart</button>
 				</div>
 				<div class="item">
 					<img src="images/nowhere.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="nowhereMen">Add to cart</button>
+					<button class="btn btn-default cart" name="nowhere" ng-click="addToCart('Nowhere Men')">Add to cart</button>
 				</div>
 				<div class="item">
 					<img src="images/outcast.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="outcast">Add to cart</button>
+					<button class="btn btn-default cart" name="outcast" ng-click="addToCart('Outcast')">Add to cart</button>
 				</div>
 			</div>
 			<div class="row regular">
 				<div class="item">
 					<img src="images/papergirls.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="paperGirls">Add to cart</button>
+					<button class="btn btn-default cart" name="papergirls" ng-click="addToCart('Paper Girls')">Add to cart</button>
 				</div>
 				<div class="item">
 					<img src="images/revival.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="revival">Add to cart</button>
+					<button class="btn btn-default cart" name="revival" ng-click="addToCart('Revival')">Add to cart</button>
 				</div>
 				<div class="item">
 					<img src="images/saga.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="saga">Add to cart</button>
+					<button class="btn btn-default cart" name="saga" ng-click="addToCart('Saga')">Add to cart</button>
 				</div>
 				<div class="item">
 					<img src="images/snotgirl.jpg" alt="">
-					<button class="btn btn-default cart" ng-click="snotGirl">Add to cart</button>
+					<button class="btn btn-default cart" name="snotgirl" ng-click="addToCart('Snotgirl')">Add to cart</button>
 				</div>
 			</div>
-			<div class="row">
-				<button class="btn btn-submit cart" type="submit">Submit Order</button>
+			<div class="row submit-order">
+				<button class="btn btn-success submitOrder" type="submit">Submit Order</button>
 			</div>
 		</form>
 	</div>

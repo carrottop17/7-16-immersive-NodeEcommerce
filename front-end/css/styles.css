@@ -98,3 +98,9 @@ body {
 .title {
   margin-bottom: 20px;
 }
+
+/* line 80, ../compass/sass/styles.scss */
+.submit-order {
+  text-align: center;
+  margin: 20px;
+}

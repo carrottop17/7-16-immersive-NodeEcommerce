@@ -6,16 +6,23 @@ var User = require('../models/users');
 mongoose.connect(mongoUrl);
 //include bcrypt to store hashed pass
 var bcrypt = require('bcrypt-nodejs');
-var randToken = require('rand-token');
+var randToken = require('rand-token').uid;
+var config = require('../config/config'); //this is our config module.
+//we have access to config.secretTestKey
+var stripe = require("stripe")(config.secretTestKey);
 
 router.post('/register', function(req, res, next) {
+
+	// User.findOne(
+	// 	{username: req.body.username},
+	// 	function(error, document))
 
 	// if(req.body.password != req.body.password2){
 	// 	res.json({
 	// 		message: "passmatch"
 	// 	})
 	// }
-  	var token = randToken.generate(32);
+  	var token = randToken(32);
 	var newUser = new User({
 		username: req.body.username,
 		password: bcrypt.hashSync(req.body.password),
@@ -47,12 +54,19 @@ router.post('/login', function(req, res, next){
 				//run comparsync. First param is the english password, second param is the hash
 				//it will return true if they are equal and false if they are not
 				var loginResult = bcrypt.compareSync(req.body.password, document.password);
+				
 				if(loginResult){
-					var token = randToken.generate(64);
+					var token = randToken(32);
+					// User.update(
+					// 	{username: req.body.username},
+					// 	{
+					// 		token: document.token
+					// 	}
+					// 	)
 					res.json({
 						success: "userfound",
 						username: req.body.username,
-						token: token
+						token: document.token
 					});
 				}else{
 					//hashes did not match or the doc wasnt found. goodbye.
@@ -87,5 +101,23 @@ router.get('/getUserData', function(req, res, next){
 		)
 	}
 });
+
+router.post('/stripe', function(req, res, next){
+	stripe.charges.create({
+		 amount: req.body.amount,
+		 currency: "usd",
+		 source: req.body.stripeToken,
+		 description: "Charge for " + req.body.email
+		}).then((charge) => {
+			res.json({
+				success: "paid"
+			});
+		}, function(err) {
+			res.json({
+				failure: "failedPayment"
+			});
+		});
+	});
+
 
 module.exports = router;

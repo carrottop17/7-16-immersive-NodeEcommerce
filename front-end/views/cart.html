@@ -1,0 +1,8 @@
+<div class="container" ng-controller="cartController" ng-init="getCart()">
+	<div class="row title">
+		<h1>Shopping Cart</h1>
+	</div>
+	<div class="titles" ng-repeat="title in cartItemsArray track by $index">
+		Title: {{title}} - $3.99/month
+	</div>
+</div>
