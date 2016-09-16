@@ -71,11 +71,6 @@ ecommerceApp.controller('mainController', function($scope, $http, $location, $co
 			console.log(response);
 		});
 	};
-
-
-	$scope.subscriptions = function(){
-		$cookies.put('title', $scope.blackScience);
-	};
 });
 
 ecommerceApp.controller('optionsController', function($scope, $http, $cookies, $location){
@@ -100,7 +95,24 @@ ecommerceApp.controller('optionsController', function($scope, $http, $cookies, $
 		var oldCart = $cookies.get('cart');
 		var newCart = oldCart + ',' + name;
 		$cookies.put('cart', newCart)
-	}
+	};
+
+	$scope.removeFromCart = function(name) {
+		var cart = $cookies.get('cart');
+	  	var values = cart.split(',');
+	  	for(var i = 0; i < values.length; i++) {
+	    	if(values[i] == name) {
+	      	values.splice(i, 1);
+	      	var newCart = values.join(',');
+	    	}
+	  	}
+	  	$cookies.put('cart', newCart)
+	};
+
+	$scope.submitOrder = function(name){
+		$location.path('delivery')
+	};
+
 });
 
 ecommerceApp.controller('cartController', function($scope, $http, $cookies, $location){

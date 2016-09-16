@@ -31,6 +31,8 @@ body{
 }
 .cart{
 	display: block;
+	margin: auto;
+
 }
 .main{
 	background-color: white;
@@ -80,4 +82,9 @@ body{
 .submit-order{
 	text-align: center;
 	margin: 20px;
+}
+.added{
+	height: 450px;
+	width: 300px;
+	background-color: red;
 }
