@@ -5,9 +5,8 @@ ecommerceApp.controller('mainController', function($scope, $http, $location, $co
 //var testPK = pk_test_NB6POtLjg1OYRbj9mdn3sLrr;
 //var liveSK = sk_live_INviSDKDWAqNM3WTxF05VlZc;
 //var livePK = pk_live_Cndi6cVv4LUsMcYU1dMo0o4F;
-
+window.scrollTo(0, 0);
 	
-
 	$scope.register = function(){
 		console.log($scope.username);
 		$http.post(apiPath + '/register', {
@@ -71,9 +70,26 @@ ecommerceApp.controller('mainController', function($scope, $http, $location, $co
 			console.log(response);
 		});
 	};
+
+	$scope.deliver = function(){
+		$http.post(apiPath + '/delivery', {
+			name: $scope.name,
+			address: $scope.address,
+			address2: $scope.address2,
+			city: $scope.city,
+			state: $scope.state,
+			zipCode: $scope.zipCode,
+			phone: $scope.phone,
+			token: $cookies.get('token')
+		}).then(function successCallback(response){
+			$location.path('/checkout');
+		}, function errorCallback(response){
+		});
+	};
 });
 
 ecommerceApp.controller('optionsController', function($scope, $http, $cookies, $location){
+	window.scrollTo(0, 0);
 	// make sure the user is logged in, i.e., that someone has not just pasted /options in the URL
 	$http({
 		method: 'GET',
@@ -93,7 +109,11 @@ ecommerceApp.controller('optionsController', function($scope, $http, $cookies, $
 
 	$scope.addToCart = function(name){
 		var oldCart = $cookies.get('cart');
-		var newCart = oldCart + ',' + name;
+		if(oldCart == undefined){
+			var newCart = name;
+		}else{
+			var newCart = oldCart + ',' + name;
+		};
 		$cookies.put('cart', newCart)
 	};
 
@@ -116,6 +136,7 @@ ecommerceApp.controller('optionsController', function($scope, $http, $cookies, $
 });
 
 ecommerceApp.controller('cartController', function($scope, $http, $cookies, $location){
+	window.scrollTo(0, 0);
 	$http({
 		method: 'GET',
 		url: apiPath + '/getUserData?token=' + $cookies.get('token')
@@ -135,13 +156,51 @@ ecommerceApp.controller('cartController', function($scope, $http, $cookies, $loc
     	var cart = $cookies.get('cart');
     	$scope.cartItemsArray = cart.split(',');
     	console.log(cart);
-    	
-    	// for(var i = 0; i<cartItemsArray.length; i++){
-        //do stuff with each index
-        //i.e., get the cost, the name, etc. and load them up into another array
-    	// }
     }
 
+    $scope.removeFromCart = function(name) {
+		var cart = $cookies.get('cart');
+	  	var values = cart.split(',');
+	  	for(var i = 0; i < values.length; i++) {
+	    	if(values[i] == name) {
+	      	values.splice(i, 1);
+	      	var newCart = values.join(',');
+	    	}
+	  	}
+	  	$cookies.put('cart', newCart)
+	};
+});
+
+ecommerceApp.controller('checkoutController', function($scope, $http, $cookies, $location){
+	window.scrollTo(0, 0);
+	$http({
+		method: 'GET',
+		url: apiPath + '/getUserData?token=' + $cookies.get('token')
+	}).then(function successCallback(response){
+		if (response.data.failure == 'noToken' || response.data.failure == 'badToken'){
+			//redirect to login page
+			$location.path('/login');
+			console.log(response.data);
+		} else {
+			$scope.username = response.data;
+			$scope.name = response.data.name;
+			$scope.address = response.data.address;
+			$scope.address2 = response.data.address2;
+			$scope.city = response.data.city;
+			$scope.state = response.data.state;
+			$scope.zipCode = response.data.zipCode;
+			$scope.phone = response.data.phone;
+			var cart = $cookies.get('cart');
+    		$scope.cartItemsArray = cart.split(',');
+    		var cartItemsArray2 = cart.split(',');
+    		$scope.quantity = cartItemsArray2.length;
+    		$scope.total = cartItemsArray2.length * 3.99;
+    		console.log(cart);
+		}
+	}, function errorCallback(response){
+		console.log(response.status);
+	});
+	
     $scope.payOrder = function(userOptions) {
         $scope.errorMessage = "";
         var handler = StripeCheckout.configure({
@@ -170,8 +229,8 @@ ecommerceApp.controller('cartController', function($scope, $http, $cookies, $loc
             }
         });
         handler.open({
-            name: 'DC Roasters',
-            description: 'A Better Way To Grind',
+            name: 'Image Direct',
+            description: 'All your favorite Image Titles',
             amount: $scope.total * 100
         });
     };
@@ -202,7 +261,7 @@ ecommerceApp.config(function($routeProvider){
 	})
 	.when('/checkout',{
 		templateUrl: 'views/checkout.html',
-		controller: 'cartController'
+		controller: 'checkoutController'
 	})
 	.when('/payment',{
 		templateUrl: 'views/payment.html',

@@ -2,7 +2,22 @@
 	<div class="row title">
 		<h1>Shopping Cart</h1>
 	</div>
-	<div class="titles" ng-repeat="title in cartItemsArray track by $index">
-		Title: {{title}} - $3.99/month
-	</div>
+	<h2>Titles</h2>
+			<div class="row list-item">
+				<div class="col-sm-6">
+					<table>
+						<thead>
+							<tr>
+								<th><h3>Name:</h3></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="title in cartItemsArray track by $index">
+								<td><h4>{{title}} -- $3.99/month</h4></td>
+								<td><button class="btn btn-danger" ng-click="removeFromCart('{{title}}')">Remove</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 </div>

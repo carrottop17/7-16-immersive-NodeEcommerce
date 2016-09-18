@@ -79,6 +79,30 @@ router.post('/login', function(req, res, next){
 	)
 });
 
+// Delivery Post
+router.post('/delivery', function(req, res, next) {
+	User.update(
+		{token: req.body.token}, // Is the which.
+		{
+			name: req.body.name,
+			address: req.body.address,
+			address2: req.body.address2,
+			city: req.body.city,
+			state: req.body.state,
+			zipCode: req.body.zipCode,
+			phone: req.body.phone
+		}, // Is what to update
+		{multi: true},
+		function(err, numberAffected){
+			if(numberAffected.ok == 1){
+				res.json({success: "updated"});
+			}else{
+				res.json({failure: "failedUpdate"});
+			};
+		}
+	);
+});
+
 router.get('/getUserData', function(req, res, next){
 	var userToken = req.query.token; // the XXX in ?token=[XXXXX]
 	if(userToken == undefined){
@@ -94,7 +118,14 @@ router.get('/getUserData', function(req, res, next){
 				}else{
 					res.json({
 						username: document.username,
-						token: document.token
+						token: document.token,
+						name: document.name,
+						address: document.address,
+						address2: document.address2,
+						city: document.city,
+						state: document.state,
+						zipCode: document.zipCode,
+						phone: document.phone
 					});
 				}
 			}
