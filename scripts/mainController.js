@@ -1,10 +1,7 @@
 var ecommerceApp = angular.module("ecommerceApp", ['ngRoute', 'ngCookies']);
-var apiPath = "http://localhost:3000";
+var apiPath = "http://danielbarranco.com:3000";
 ecommerceApp.controller('mainController', function($scope, $http, $location, $cookies){
-//var testSK = sk_test_MbXigc17vvk4oKDF0RB427ht;
-//var testPK = pk_test_NB6POtLjg1OYRbj9mdn3sLrr;
-//var liveSK = sk_live_INviSDKDWAqNM3WTxF05VlZc;
-//var livePK = pk_live_Cndi6cVv4LUsMcYU1dMo0o4F;
+
 window.scrollTo(0, 0);
 	
 	$scope.register = function(){
