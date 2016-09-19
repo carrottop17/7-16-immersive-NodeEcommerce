@@ -71,6 +71,11 @@ window.scrollTo(0, 0);
 		});
 	};
 
+	$scope.logout = function(){
+		$cookies.remove('token');
+		$cookies.remove('cart');
+	}
+
 	$scope.deliver = function(){
 		$http.post(apiPath + '/delivery', {
 			name: $scope.name,
@@ -80,6 +85,7 @@ window.scrollTo(0, 0);
 			state: $scope.state,
 			zipCode: $scope.zipCode,
 			phone: $scope.phone,
+			order: $cookies.get('cart', $scope.order),
 			token: $cookies.get('token')
 		}).then(function successCallback(response){
 			$location.path('/checkout');
@@ -205,7 +211,7 @@ ecommerceApp.controller('checkoutController', function($scope, $http, $cookies, 
         $scope.errorMessage = "";
         var handler = StripeCheckout.configure({
             key: 'pk_test_NB6POtLjg1OYRbj9mdn3sLrr',
-            image: 'assets/img/dc_roasters_200x124_lt.png',
+            image: 'images/image_i.png',
             locale: 'auto',
             token: function(token) {
                 console.log("The token Id is: ");
@@ -236,6 +242,28 @@ ecommerceApp.controller('checkoutController', function($scope, $http, $cookies, 
     };
 });
 
+ecommerceApp.controller('receiptController', function($scope, $http, $cookies, $location){
+	window.scrollTo(0, 0);
+	$http({
+		method: 'GET',
+		url: apiPath + '/getUserData?token=' + $cookies.get('token')
+	}).then(function successCallback(response){
+		if (response.data.failure == 'noToken' || response.data.failure == 'badToken'){
+			//redirect to login page
+			$location.path('/login');
+			console.log(response.data);
+		} else {
+			var cart = $cookies.get('cart');
+    		$scope.cartItemsArray = cart.split(',');
+    		var cartItemsArray2 = cart.split(',');
+    		$scope.quantity = cartItemsArray2.length;
+    		$scope.total = cartItemsArray2.length * 3.99;
+    		$cookies.remove('cart');
+		}
+	}, function errorCallback(response){
+		console.log(response.status);
+	});
+});
 
 //set up routes using the routes module
 ecommerceApp.config(function($routeProvider){
@@ -262,6 +290,10 @@ ecommerceApp.config(function($routeProvider){
 	.when('/checkout',{
 		templateUrl: 'views/checkout.html',
 		controller: 'checkoutController'
+	})
+	.when('/receipt',{
+		templateUrl: 'views/receipt.html',
+		controller: 'receiptController'
 	})
 	.when('/payment',{
 		templateUrl: 'views/payment.html',

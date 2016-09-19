@@ -90,7 +90,8 @@ router.post('/delivery', function(req, res, next) {
 			city: req.body.city,
 			state: req.body.state,
 			zipCode: req.body.zipCode,
-			phone: req.body.phone
+			phone: req.body.phone,
+			order: req.body.order
 		}, // Is what to update
 		{multi: true},
 		function(err, numberAffected){

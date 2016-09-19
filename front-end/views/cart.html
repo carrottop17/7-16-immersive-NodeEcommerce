@@ -14,7 +14,7 @@
 						<tbody>
 							<tr ng-repeat="title in cartItemsArray track by $index">
 								<td><h4>{{title}} -- $3.99/month</h4></td>
-								<td><button class="btn btn-danger" ng-click="removeFromCart('{{title}}')">Remove</button></td>
+								<td><button class="btn btn-danger removeFromCart" ng-click="removeFromCart('{{title}}')">X</button></td>
 							</tr>
 						</tbody>
 					</table>

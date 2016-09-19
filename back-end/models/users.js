@@ -13,7 +13,8 @@ var userSchema = new Schema({
 	city: String,
 	state: String, 
 	zipCode: String,
-	phone: String
+	phone: String,
+	order: String
 });
 
 module.exports = mongoose.model('User', userSchema);
