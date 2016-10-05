@@ -12,9 +12,13 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="title in cartItemsArray track by $index">
-								<td><h4>{{title}} -- $3.99/month</h4></td>
-								<td><button class="btn btn-danger removeFromCart" ng-click="removeFromCart('{{title}}')">X</button></td>
+							<tr ng-repeat="name in cartItemsArray track by $index">
+								<td><h4 class="cartTitle">{{name}} -- $3.99/month</h4></td>
+								<td><input type="radio" ng-model="my.favorite" ng-value="name" id="{{name}}" name="favorite"></td>
+								
+							</tr>
+							<tr>
+								<td><button class="btn btn-danger removeFromCart" ng-click="removeFromCart('{{my.favorite}}')">Delete From Cart</button></td>
 							</tr>
 						</tbody>
 					</table>

@@ -139,6 +139,8 @@ ecommerceApp.controller('optionsController', function($scope, $http, $cookies, $
 });
 
 ecommerceApp.controller('cartController', function($scope, $http, $cookies, $location){
+	$scope.names = ['Black Science', 'Cassanova', 'Chew', 'Descender', 'East of West', 'Fairyland', 'Fuse', 'Invincible', 'Low', 'Monstress', 'Nowhere Men', 'Outcast', 'Paper girls', 'Revival', 'Saga', 'Snotgirl'];
+    $scope.my = { favorite: 'Monstress' };
 	window.scrollTo(0, 0);
 	$http({
 		method: 'GET',
@@ -161,7 +163,9 @@ ecommerceApp.controller('cartController', function($scope, $http, $cookies, $loc
     	console.log(cart);
     }
 
-    $scope.removeFromCart = function(name) {
+    $scope.removeFromCart = function() {
+    	var name = $scope.my.favorite
+    	console.log(name);
 		var cart = $cookies.get('cart');
 	  	var values = cart.split(',');
 	  	for(var i = 0; i < values.length; i++) {
@@ -171,7 +175,10 @@ ecommerceApp.controller('cartController', function($scope, $http, $cookies, $loc
 	    	}
 	  	}
 	  	$cookies.put('cart', newCart)
+	  	$scope.getCart()
 	};
+
+	
 });
 
 ecommerceApp.controller('checkoutController', function($scope, $http, $cookies, $location){
